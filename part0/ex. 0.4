@@ -1,1 +1,26 @@
+sequenceDiagram
+    participant browser
+    participant server
+ 
+   browser->> server : POST https://studies.cs.helsinki.fi/exampleapp/new_note
+   server -->> browser: GET /exampleapp/notes
+   Note right of browser: the browser reloads the page
 
+   browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    server-->>browser: HTML document
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: the JavaScript file
+    deactivate server
+
+    note left of server: the JavaScript file is executed and the JSON file is fetched
+    note right of browser: the HTML form tag's method attribute defines how the form is submitted, while the action attribute defines the address that recieves the request
+browser->> server: POST /exampleapp/new_note
+
+note left of server:  The server handles the POST request creating a new object for each new note with two properties, date and content, and pushing into an array stored in the JSON file
