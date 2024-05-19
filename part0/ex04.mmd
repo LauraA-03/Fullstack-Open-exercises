@@ -1,23 +1,11 @@
 sequenceDiagram
     participant browser
     participant server
- 
-   browser->> server : POST https://studies.cs.helsinki.fi/exampleapp/new_note
-   server -->> browser: GET /exampleapp/notes
-   Note right of browser: the browser reloads the page
 
-   browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
-    server-->>browser: HTML document
+      Note right of browser: When user enters input and clicks "Save" button:
+      browser ->> server : POST REQUEST TO ADDRESS "https://studies.cs.helsinki.fi/exampleapp/new_note"
+      Note right of browser: the POST request contains the user input in the payload
+      server -->> browser : redirect to address "/exampleapp/notes"
+      browser ->> server : GET REQUEST to same address "/exampleapp/notes"
+      Note right of browser: the browser reloads the whole page now updated with new note
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
-    activate server
-    server-->>browser: the css file
-    deactivate server
-
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
-    activate server
-    server-->>browser: the JavaScript file
-    deactivate server
-
-    note left of server: the JavaScript file is executed and the JSON file is fetched with updated notes
-  
