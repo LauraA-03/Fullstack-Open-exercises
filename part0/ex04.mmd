@@ -19,8 +19,5 @@ sequenceDiagram
     server-->>browser: the JavaScript file
     deactivate server
 
-    note left of server: the JavaScript file is executed and the JSON file is fetched
-    note right of browser: the HTML form tag's method attribute defines how the form is submitted, while the action attribute defines the address that recieves the request
-browser->> server: POST /exampleapp/new_note
-
-note left of server:  The server handles the POST request creating a new object for each new note with two properties, date and content, and pushing into an array stored in the JSON file
+    note left of server: the JavaScript file is executed and the JSON file is fetched with updated notes
+  
